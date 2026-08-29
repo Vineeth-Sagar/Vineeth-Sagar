@@ -1,2 +1,4 @@
 assets/source.jpg
 assets/_preview*.png
+__pycache__/
+*.pyc
