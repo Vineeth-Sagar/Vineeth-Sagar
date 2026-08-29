@@ -3,3 +3,4 @@ assets/_preview*.png
 __pycache__/
 *.pyc
 _check.html
+fix-authors.sh
