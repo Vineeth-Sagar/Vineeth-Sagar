@@ -69,43 +69,105 @@ def background_mask(small, tol):
     return bg
 
 
-def animation_css(args, w, h):
-    """A CRT-style top-to-bottom slice reveal.
+def despeckle(bg, cols, rows, min_neighbours):
+    """Drop live cells that have almost no live neighbours.
 
-    The figure sits behind a mask holding one black "cover" rectangle. The cover
-    starts flush with the top (hiding everything) and steps downward, so the
-    portrait is unmasked slice by slice, the way a CRT paints a frame.
-
-    Two deliberate choices:
-
-    * The cover moves by `transform`, never by geometry, so nothing about the
-      dots or the mask has to be recomputed per frame.
-    * Its BASE style is fully scrolled away - i.e. fully revealed. If a renderer
-      ever ignores the animation, the portrait shows complete rather than
-      vanishing behind a cover stuck at the top.
+    The flood fill leaves a scatter of single dots where the wall shaded off or
+    the subject's edge went soft. They read as dirt around the silhouette, so
+    anything too isolated to be part of the figure gets folded back into the
+    background.
     """
-    loop = args.loop
-    rev = args.reveal * 100.0          # % of the loop spent scanning
+    if min_neighbours <= 0:
+        return bg
+    doomed = []
+    for y in range(rows):
+        for x in range(cols):
+            if bg[y][x]:
+                continue
+            n = 0
+            for dy in (-1, 0, 1):
+                for dx in (-1, 0, 1):
+                    if dx == 0 and dy == 0:
+                        continue
+                    nx, ny = x + dx, y + dy
+                    if 0 <= nx < cols and 0 <= ny < rows and not bg[ny][nx]:
+                        n += 1
+            if n < min_neighbours:
+                doomed.append((x, y))
+    for x, y in doomed:
+        bg[y][x] = True
+    return bg
 
-    css = (
-        # Base state = revealed. The keyframes drive it, they do not gate it.
-        ".cover{transform:translateY(%(h)dpx)}"
-        ".cover{animation:scan %(loop)dms linear infinite}"
-        "@keyframes scan{"
-        "0%%{transform:translateY(0);animation-timing-function:steps(%(n)d,end)}"
-        "%(rev).3f%%{transform:translateY(%(h)dpx)}"
-        "100%%{transform:translateY(%(h)dpx)}}"
-    ) % {"h": h, "loop": loop, "n": args.slices, "rev": rev}
+
+def subject_levels(gray, bg, cols, rows, lo_pct, hi_pct, gamma):
+    """Build a tone curve from the SUBJECT's pixels only.
+
+    --equalize stretches the whole frame, but most of the frame is blank wall,
+    so the figure only ever gets a slice of the available range and lands dark
+    against a #0D1117 page. Measuring the subject alone spends the full range
+    on the person, and gamma lifts the midtones so the face reads at 300px.
+    """
+    gx = gray.load()
+    vals = sorted(gx[x, y] for y in range(rows) for x in range(cols)
+                  if bg is None or not bg[y][x])
+    if not vals:
+        return list(range(256))
+    lo = vals[int(len(vals) * lo_pct)]
+    hi = vals[min(len(vals) - 1, int(len(vals) * hi_pct))]
+    if hi <= lo:
+        lo, hi = 0, 255
+    lut = []
+    for v in range(256):
+        t = (v - lo) / (hi - lo)
+        t = 0.0 if t < 0 else (1.0 if t > 1 else t)
+        lut.append(int(round((t ** gamma) * 255)))
+    return lut
+
+def reveal_defs(args, w, h):
+    """Mask for the hero: an optional bottom fade, plus the CRT scan cover.
+
+    Both live in one mask so they compose: the fade decides how much of each
+    row can ever show, the cover decides how much has been scanned yet.
+    """
+    css = ""
+    if args.animate:
+        css = (
+            # Base state = revealed. The keyframes drive it, they do not gate it.
+            ".cover{transform:translateY(%(h)dpx)}"
+            ".cover{animation:scan %(loop)dms linear infinite}"
+            "@keyframes scan{"
+            "0%%{transform:translateY(0);animation-timing-function:steps(%(n)d,end)}"
+            "%(rev).3f%%{transform:translateY(%(h)dpx)}"
+            "100%%{transform:translateY(%(h)dpx)}}"
+        ) % {"h": h, "loop": args.loop, "n": args.slices,
+             "rev": args.reveal * 100.0}
+
+    grad = ""
+    base_fill = "#fff"
+    if args.fade > 0:
+        start = 1.0 - args.fade
+        grad = (
+            '<linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">'
+            f'<stop offset="{start:.3f}" stop-color="#fff"/>'
+            '<stop offset="1" stop-color="#000"/>'
+            "</linearGradient>"
+        )
+        base_fill = "url(#fade)"
+
+    cover = ""
+    if args.animate:
+        cover = (f'<rect class="cover" x="0" y="0" width="{w:g}" '
+                 f'height="{h:g}" fill="#000"/>')
 
     return (
         "<defs>"
-        f'<mask id="reveal" maskUnits="userSpaceOnUse" '
-        f'x="0" y="0" width="{w:g}" height="{h:g}">'
-        f'<rect x="0" y="0" width="{w:g}" height="{h:g}" fill="#fff"/>'
-        f'<rect class="cover" x="0" y="0" width="{w:g}" height="{h:g}" fill="#000"/>'
-        "</mask>"
-        "</defs>"
-        f"<style>{css}</style>"
+        + grad
+        + f'<mask id="reveal" maskUnits="userSpaceOnUse" '
+          f'x="0" y="0" width="{w:g}" height="{h:g}">'
+          f'<rect x="0" y="0" width="{w:g}" height="{h:g}" fill="{base_fill}"/>'
+        + cover
+        + "</mask></defs>"
+        + (f"<style>{css}</style>" if css else "")
     )
 
 
@@ -127,6 +189,8 @@ def build(args):
     gx = gray.load()
 
     bg = background_mask(small, args.tol) if args.cutout else None
+    if bg is not None:
+        bg = despeckle(bg, cols, rows, args.despeckle)
 
     if bg is not None and args.trim:
         # Re-frame tightly around the subject, then rebuild the grid, so the
@@ -149,6 +213,10 @@ def build(args):
             px = small.load()
             gx = gray.load()
             bg = background_mask(small, args.tol)
+            bg = despeckle(bg, cols, rows, args.despeckle)
+
+    lut = (subject_levels(gray, bg, cols, rows, args.black, args.white,
+                          args.gamma) if args.levels else None)
 
     step = 10.0
     r_max = step / 2.0
@@ -173,7 +241,8 @@ def build(args):
             if bg is not None and bg[y][x]:
                 continue                      # flat background - draw nothing
 
-            dark = 1.0 - (gx[x, y] / 255.0)
+            lum = lut[gx[x, y]] if lut else gx[x, y]
+            dark = 1.0 - (lum / 255.0)
             weight = dark ** (1.0 - args.detail * 0.9)
 
             if bg is not None:
@@ -186,7 +255,10 @@ def build(args):
                     continue
 
             if args.color:
-                cr, cg, cb = (min(255, (v // q) * q + q // 2) for v in px[x, y])
+                raw = px[x, y]
+                if lut:
+                    raw = (lut[raw[0]], lut[raw[1]], lut[raw[2]])
+                cr, cg, cb = (min(255, (v // q) * q + q // 2) for v in raw)
                 fill = f"#{cr:02x}{cg:02x}{cb:02x}"
             else:
                 fill = args.mono_color
@@ -198,8 +270,9 @@ def build(args):
             )
             dots += 1
 
-    if args.animate:
-        parts.append(animation_css(args, w, h))
+    masked = args.animate or args.fade > 0
+    if masked:
+        parts.append(reveal_defs(args, w, h))
         parts.append('<g mask="url(#reveal)">')
 
     for fill, circles in groups.items():
@@ -207,7 +280,7 @@ def build(args):
         parts.extend(circles)
         parts.append("</g>")
 
-    if args.animate:
+    if masked:
         parts.append("</g>")
 
     parts.append("</svg>")
@@ -259,6 +332,19 @@ def main():
                    help="horizontal slices the reveal steps through")
     p.add_argument("--reveal", type=float, default=0.28,
                    help="fraction of the loop spent scanning; the rest holds")
+    p.add_argument("--fade", type=float, default=0.0,
+                   help="fraction of the height that dissolves at the bottom, "
+                        "so the torso ends instead of being chopped off")
+    p.add_argument("--despeckle", type=int, default=0,
+                   help="drop live cells with fewer than N live neighbours; "
+                        "3 clears the scatter the flood fill leaves behind")
+    p.add_argument("--levels", action="store_true",
+                   help="build the tone curve from the subject only, not the "
+                        "whole frame - the figure reads much brighter")
+    p.add_argument("--black", type=float, default=0.02, help="black clip percentile")
+    p.add_argument("--white", type=float, default=0.99, help="white clip percentile")
+    p.add_argument("--gamma", type=float, default=1.0,
+                   help="<1 lifts midtones; try 0.85 for a dark page")
     p.add_argument("--alt", default="Portrait rendered as a dot matrix")
     build(p.parse_args())
 

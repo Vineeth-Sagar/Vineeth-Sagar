@@ -36,14 +36,14 @@ git add . && git commit -m "feat: profile readme" && git push
 
 ## 3. The hero portrait
 
-The banner is `assets/hero-anim.svg` — a dot-matrix rendering generated from a photo
+The banner is `assets/hero-scan.svg` — a dot-matrix rendering generated from a photo
 by `scripts/dotify.py`. It has a transparent background, so one file serves both
 GitHub themes.
 
 To regenerate from a different photo:
 
 ```bash
-python scripts/dotify.py assets/source.jpg -o assets/hero-anim.svg --cols 112 --detail 0.45 --floor 0.36 --tol 50 --quant 14 --cutout --trim --equalize --color --animate
+python scripts/dotify.py assets/source.jpg -o assets/hero-scan.svg --cols 124 --detail 0.45 --floor 0.36 --tol 50 --quant 14 --cutout --trim --equalize --color --levels --gamma 0.95 --despeckle 3 --fade 0.10 --animate
 ```
 
 - `--cutout` — flood-fills the flat studio background away from the border, so
@@ -53,6 +53,14 @@ python scripts/dotify.py assets/source.jpg -o assets/hero-anim.svg --cols 112 --
   patches in pale areas like a light shirt. Raise it if anything looks hollow.
 - `--trim` — re-frames tightly around the subject so the figure fills the SVG.
 - `--quant` — colour quantisation; higher makes a smaller file, flatter colour.
+- `--levels` — builds the tone curve from the **subject's** pixels instead of the
+  whole frame. `--equalize` alone measures mostly blank wall, so the figure only
+  gets a slice of the range and lands dark on a `#0D1117` page. Pair with
+  `--gamma` (<1 lifts midtones) and `--black`/`--white` clip percentiles.
+- `--despeckle N` — folds live cells with fewer than N live neighbours back into
+  the background, clearing the scatter the flood fill leaves around the edge.
+- `--fade F` — dissolves the bottom F of the height, so the torso ends instead of
+  being chopped off by the frame edge.
 
 ### The animation (`--animate`)
 
