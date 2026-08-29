@@ -48,6 +48,9 @@
 <br/><br/>
 
 <!-- ─────────────── 4 · LIVE COUNTERS ─────────────── -->
+<!-- Exactly ONE komarev badge per page. Two of them hit the same counter on
+     every load, so each visit was counted twice and the second badge always
+     rendered one higher than the first. -->
 <img src="https://komarev.com/ghpvc/?username=Vineeth-Sagar&style=flat&color=52ff78&label=profile+views" alt="profile views" />
 &nbsp;
 <img src="https://img.shields.io/github/followers/Vineeth-Sagar?style=flat&color=a78bfa&labelColor=0D1117&logo=github&logoColor=white&label=followers" alt="followers" />
@@ -193,10 +196,6 @@ If something here resonates with you, reach out — I'd love to build together.
 <a href="https://discord.com/users/1489321223497191425"><img src="https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord" /></a>
 <a href="mailto:vineethsagarhl0@gmail.com"><img src="https://img.shields.io/badge/Gmail-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Gmail" /></a>
 <a href="https://leetcode.com/vineethQuinz/"><img src="https://img.shields.io/badge/LeetCode-FFA116?style=for-the-badge&logo=leetcode&logoColor=black" alt="LeetCode" /></a>
-
-<br/><br/>
-
-<img src="https://komarev.com/ghpvc/?username=Vineeth-Sagar&style=for-the-badge&color=a78bfa&label=VISITORS" alt="visitor count" />
 
 <br/><br/>
 
