@@ -5,7 +5,7 @@
   Palette: bg #0D1117 · neon green #52FF78 · violet #A78BFA
 
   Hero portrait is generated from a photo by scripts/dotify.py. Regenerate with:
-    python scripts/dotify.py assets/source.jpg -o assets/portrait --cols 112 --detail 0.45 --floor 0.36 --tol 50 --quant 14 --cutout --trim --equalize --color
+    python scripts/dotify.py assets/source.jpg -o assets/hero-portrait --cols 112 --detail 0.45 --floor 0.36 --tol 50 --quant 14 --cutout --trim --equalize --color
   assets/source.jpg is gitignored - the raw photo never leaves your machine.
 ═══════════════════════════════════════════════════════════════════════════════
 -->
@@ -13,7 +13,7 @@
 <div align="center">
 
 <!-- ─────────────── 1 · HERO PORTRAIT (dot matrix, theme-agnostic) ─────────────── -->
-<img src="assets/portrait.svg" width="300" alt="Vineeth Sagar H L, rendered as a dot matrix" />
+<img src="assets/hero-portrait.svg" width="300" alt="Vineeth Sagar H L, rendered as a dot matrix" />
 
 <br/>
 
@@ -124,11 +124,6 @@ class VineethSagar:
 
 <!-- ─── STREAK ─── -->
 <img height="170" src="https://streak-stats.demolab.com?user=Vineeth-Sagar&hide_border=true&background=0D1117&stroke=30363D&ring=52FF78&fire=A78BFA&currStreakLabel=52FF78&sideLabels=C9D1D9&dates=8B949E&sideNums=C9D1D9&currStreakNum=FFFFFF" alt="GitHub streak" />
-
-<br/><br/>
-
-<!-- ─── CONTRIBUTION HEATMAP ─── -->
-<img width="90%" src="https://ghchart.rshah.org/52FF78/Vineeth-Sagar" alt="Contribution heatmap" />
 
 <br/><br/>
 

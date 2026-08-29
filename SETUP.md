@@ -36,14 +36,14 @@ git add . && git commit -m "feat: profile readme" && git push
 
 ## 3. The hero portrait
 
-The banner is `assets/portrait.svg` — a dot-matrix rendering generated from a photo
+The banner is `assets/hero-portrait.svg` — a dot-matrix rendering generated from a photo
 by `scripts/dotify.py`. It has a transparent background, so one file serves both
 GitHub themes.
 
 To regenerate from a different photo:
 
 ```bash
-python scripts/dotify.py assets/source.jpg -o assets/portrait --cols 112 --detail 0.45 --floor 0.36 --tol 50 --quant 14 --cutout --trim --equalize --color
+python scripts/dotify.py assets/source.jpg -o assets/hero-portrait --cols 112 --detail 0.45 --floor 0.36 --tol 50 --quant 14 --cutout --trim --equalize --color
 ```
 
 - `--cutout` — flood-fills the flat studio background away from the border, so
@@ -105,7 +105,7 @@ ones are **currently down for everyone** and are deliberately NOT used:
 | Host | Status | Used instead |
 |---|---|---|
 | `github-readme-stats.vercel.app` | 503 | `github-profile-summary-cards.vercel.app` |
-| `github-readme-activity-graph.vercel.app` | 402 (Vercel over quota) | `ghchart.rshah.org` |
+| `github-readme-activity-graph.vercel.app` | 402 (Vercel over quota) | dropped — the snake covers it |
 | `github-profile-trophy.vercel.app` | 402 | `github-trophies.vercel.app` (mirror) |
 | `visitcount.itsvg.in` | 404 | `komarev.com` |
 
