@@ -56,28 +56,23 @@ python scripts/dotify.py assets/source.jpg -o assets/hero-anim.svg --cols 112 --
 
 ### The animation (`--animate`)
 
-Drop `--animate` for a still portrait. With it, the dots are grouped into three
-depth layers (by luminance — on a front-lit portrait the bright planes read as
-nearer) and ten diagonal shimmer bands, and CSS animates the groups:
+Drop `--animate` for a still portrait. With it, the portrait is revealed top to
+bottom in horizontal slices, like a CRT painting a frame, then holds, then
+re-scans on a loop.
 
-| Effect | How | Period |
+| Flag | Default | What it does |
 |---|---|---|
-| Gentle head tilt | whole figure rotates ±`--tilt`° around the torso | 12 s |
-| Breathing parallax | each depth layer scales/lifts by its own amount | 6 s |
-| Light shimmer | band opacity, each offset by a negative delay so the highlight travels | 6 s |
-| Amber LED pulse | `feFlood` composited through the dots' alpha, screened back on top | 4 s |
+| `--slices` | 48 | horizontal slices the reveal steps through |
+| `--reveal` | 0.28 | fraction of the loop spent scanning; the rest holds |
+| `--loop` | 9250 ms | one full cycle - half the typing banner's 18500 ms, so the two stay in step |
 
-Every period divides the 12 s master loop, so it is seamless. Only the ~30
-groups carry a transform — never the 9,400 individual dots — so the browser
-composites it at display refresh rate. Tune with `--tilt`, `--breathe`,
-`--rise`, `--dim`, `--bands`, `--amber`, `--amber-min`, `--amber-max`, `--loop`.
-- `--min-r` — smallest dot drawn. Raise it to erase a pale background, lower it
-  to keep the full-frame LED texture.
-- `--cols` — grid resolution. Higher is finer but the SVG grows fast.
-- Drop `--color` for a monochrome neon portrait (`--mono-color '#52FF78'`).
+It is one animated mask, not per-dot animation: a black cover rectangle steps
+down the figure by `transform`, unmasking a slice at a time. Nothing about the
+9,400 dots is recomputed per frame.
 
-`assets/source.jpg` is **gitignored** — the raw photo stays on your machine and only
-the derived SVG is published. Keep a copy locally if you want to re-run the script.
+The cover's **base** style is fully scrolled away, i.e. revealed. That matters:
+if a renderer ever ignores the animation, the portrait shows complete rather
+than disappearing behind a cover parked at the top.
 
 ## 3b. The typing banner
 
