@@ -5,16 +5,15 @@
   Palette: bg #0D1117 · neon green #52FF78 · violet #A78BFA
 
   Hero portrait is generated from a photo by scripts/dotify.py. Regenerate with:
-    python scripts/dotify.py assets/source.jpg -o assets/portrait \
-      --cols 92 --detail 0.30 --min-r 2.2 --equalize --color \
-      --crop 240,120,790,665
+    python scripts/dotify.py assets/source.jpg -o assets/portrait --cols 112 --detail 0.45 --floor 0.36 --tol 50 --quant 14 --cutout --trim --equalize --color
+  assets/source.jpg is gitignored - the raw photo never leaves your machine.
 ═══════════════════════════════════════════════════════════════════════════════
 -->
 
 <div align="center">
 
 <!-- ─────────────── 1 · HERO PORTRAIT (dot matrix, theme-agnostic) ─────────────── -->
-<img src="assets/portrait.svg" width="280" alt="Vineeth Sagar H L, rendered as a dot matrix" />
+<img src="assets/portrait.svg" width="300" alt="Vineeth Sagar H L, rendered as a dot matrix" />
 
 <br/>
 

@@ -43,10 +43,16 @@ GitHub themes.
 To regenerate from a different photo:
 
 ```bash
-python scripts/dotify.py assets/source.jpg -o assets/portrait --cols 92 --detail 0.30 --min-r 2.2 --equalize --color --crop 240,120,790,665
+python scripts/dotify.py assets/source.jpg -o assets/portrait --cols 112 --detail 0.45 --floor 0.36 --tol 50 --quant 14 --cutout --trim --equalize --color
 ```
 
-- `--crop L,T,R,B` — pixel box around the head and shoulders. Adjust per photo.
+- `--cutout` — flood-fills the flat studio background away from the border, so
+  you get a silhouette instead of a rectangle of wall dots. `--tol` is the colour
+  tolerance: raise it if wall survives, lower it if it starts eating clothing.
+- `--floor` — minimum dot size *inside* the subject. This is what prevents blank
+  patches in pale areas like a light shirt. Raise it if anything looks hollow.
+- `--trim` — re-frames tightly around the subject so the figure fills the SVG.
+- `--quant` — colour quantisation; higher makes a smaller file, flatter colour.
 - `--min-r` — smallest dot drawn. Raise it to erase a pale background, lower it
   to keep the full-frame LED texture.
 - `--cols` — grid resolution. Higher is finer but the SVG grows fast.
