@@ -66,9 +66,9 @@ class VineethSagar:
     name       = "Vineeth Sagar H L"
     location   = "Bangalore, India"
     role       = "ML Engineer · LLM Systems · Full-Stack"
-    Languages  = ["Python","Java","c","JavaScript","SQL","NodeJs"]
-    Frameworks = ["Git", "Pytorch", "FastAPI","Pandas", "NumPy"]
-    Domain     = ["ML","RAG system", "Web Dev", "Dev Ops"]
+    languages  = ["Python","Java","c","JavaScript","SQL","NodeJs"]
+    frameworks = ["Git", "Pytorch", "FastAPI","Pandas", "NumPy"]
+    domain     = ["ML","RAG system", "Web Dev", "Dev Ops"]
     focus_2026 = ["LLM security & governance", "RAG pipelines", "DevOps at scale"]
     open_to    = ["Open source", "Research collabs", "Hackathons"]
 
