@@ -30,12 +30,20 @@
 
 <br/>
 
-<!-- ─────────────── 3 · PRIMARY ACTION BADGES ─────────────── -->
-<a href="https://www.linkedin.com/in/vineeth-sagar-h-l/"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=flat&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>&nbsp;
-<a href="mailto:vineethsagarhl0@gmail.com"><img src="https://img.shields.io/badge/Email-EA4335?style=flat&logo=gmail&logoColor=white" alt="Email" /></a>&nbsp;
-<a href="https://www.vineethsagar.co.in/"><img src="https://img.shields.io/badge/Portfolio-0D1117?style=flat&logo=vercel&logoColor=52FF78" alt="Portfolio" /></a>&nbsp;
-<a href="https://leetcode.com/vineethQuinz/"><img src="https://img.shields.io/badge/LeetCode-FFA116?style=flat&logo=leetcode&logoColor=black" alt="LeetCode" /></a>&nbsp;
-<a href="https://discord.com/users/1489321223497191425"><img src="https://img.shields.io/badge/Discord-5865F2?style=flat&logo=discord&logoColor=white" alt="Discord" /></a>
+<!-- ─────────────── 3 · PRIMARY ACTION LINKS ─────────────── -->
+<!-- App-style rounded tiles. skillicons.dev renders one 48px tile per request,
+     so each icon can carry its own link. LeetCode is the one it does not have
+     (it returns a tile reading "undefined"), so that tile is drawn locally in
+     assets/icons/ on the same 256x256 rx=60 canvas. -->
+<a href="https://www.vineethsagar.co.in/" title="Portfolio"><img src="https://skillicons.dev/icons?i=vercel" width="48" alt="Portfolio" /></a>
+&nbsp;
+<a href="https://www.linkedin.com/in/vineeth-sagar-h-l/" title="LinkedIn"><img src="https://skillicons.dev/icons?i=linkedin" width="48" alt="LinkedIn" /></a>
+&nbsp;
+<a href="mailto:vineethsagarhl0@gmail.com" title="Email"><img src="https://skillicons.dev/icons?i=gmail" width="48" alt="Email" /></a>
+&nbsp;
+<a href="https://leetcode.com/vineethQuinz/" title="LeetCode"><img src="assets/icons/leetcode.svg" width="48" alt="LeetCode" /></a>
+&nbsp;
+<a href="https://discord.com/users/1489321223497191425" title="Discord"><img src="https://skillicons.dev/icons?i=discord" width="48" alt="Discord" /></a>
 
 <br/><br/>
 
