@@ -8,7 +8,7 @@
     python scripts/typing_svg.py -o assets/typing.svg --lines "Vineeth Sagar H L" "Machine Learning Engineer" "LLM & RAG Systems Builder" "Full-Stack Developer" "Cloud Native Builder"
 
   Hero portrait is generated from a photo by scripts/dotify.py. Regenerate with:
-    python scripts/dotify.py assets/source.jpg -o assets/hero-portrait --cols 112 --detail 0.45 --floor 0.36 --tol 50 --quant 14 --cutout --trim --equalize --color
+    python scripts/dotify.py assets/source.jpg -o assets/hero-anim.svg --cols 112 --detail 0.45 --floor 0.36 --tol 50 --quant 14 --cutout --trim --equalize --color --animate
   assets/source.jpg is gitignored - the raw photo never leaves your machine.
 ═══════════════════════════════════════════════════════════════════════════════
 -->
@@ -16,7 +16,7 @@
 <div align="center">
 
 <!-- ─────────────── 1 · HERO PORTRAIT (dot matrix, theme-agnostic) ─────────────── -->
-<img src="assets/hero-portrait.svg" width="300" alt="Vineeth Sagar H L, rendered as a dot matrix" />
+<img src="assets/hero-anim.svg" width="300" alt="Vineeth Sagar H L, animated dot matrix portrait" />
 
 <br/>
 

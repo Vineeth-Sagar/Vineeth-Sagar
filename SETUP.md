@@ -36,14 +36,14 @@ git add . && git commit -m "feat: profile readme" && git push
 
 ## 3. The hero portrait
 
-The banner is `assets/hero-portrait.svg` — a dot-matrix rendering generated from a photo
+The banner is `assets/hero-anim.svg` — a dot-matrix rendering generated from a photo
 by `scripts/dotify.py`. It has a transparent background, so one file serves both
 GitHub themes.
 
 To regenerate from a different photo:
 
 ```bash
-python scripts/dotify.py assets/source.jpg -o assets/hero-portrait --cols 112 --detail 0.45 --floor 0.36 --tol 50 --quant 14 --cutout --trim --equalize --color
+python scripts/dotify.py assets/source.jpg -o assets/hero-anim.svg --cols 112 --detail 0.45 --floor 0.36 --tol 50 --quant 14 --cutout --trim --equalize --color --animate
 ```
 
 - `--cutout` — flood-fills the flat studio background away from the border, so
@@ -53,6 +53,24 @@ python scripts/dotify.py assets/source.jpg -o assets/hero-portrait --cols 112 --
   patches in pale areas like a light shirt. Raise it if anything looks hollow.
 - `--trim` — re-frames tightly around the subject so the figure fills the SVG.
 - `--quant` — colour quantisation; higher makes a smaller file, flatter colour.
+
+### The animation (`--animate`)
+
+Drop `--animate` for a still portrait. With it, the dots are grouped into three
+depth layers (by luminance — on a front-lit portrait the bright planes read as
+nearer) and ten diagonal shimmer bands, and CSS animates the groups:
+
+| Effect | How | Period |
+|---|---|---|
+| Gentle head tilt | whole figure rotates ±`--tilt`° around the torso | 12 s |
+| Breathing parallax | each depth layer scales/lifts by its own amount | 6 s |
+| Light shimmer | band opacity, each offset by a negative delay so the highlight travels | 6 s |
+| Amber LED pulse | `feFlood` composited through the dots' alpha, screened back on top | 4 s |
+
+Every period divides the 12 s master loop, so it is seamless. Only the ~30
+groups carry a transform — never the 9,400 individual dots — so the browser
+composites it at display refresh rate. Tune with `--tilt`, `--breathe`,
+`--rise`, `--dim`, `--bands`, `--amber`, `--amber-min`, `--amber-max`, `--loop`.
 - `--min-r` — smallest dot drawn. Raise it to erase a pale background, lower it
   to keep the full-frame LED texture.
 - `--cols` — grid resolution. Higher is finer but the SVG grows fast.
