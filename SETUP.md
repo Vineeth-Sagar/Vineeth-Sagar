@@ -34,13 +34,26 @@ Copy `README.md`, `assets/`, and `.github/` into the clone, then:
 git add . && git commit -m "feat: profile readme" && git push
 ```
 
-## 3. The hero GIF
+## 3. The hero portrait
 
-- Put the banner at `assets/hero.gif`. Keep it **under ~5 MB** — GitHub proxies images through Camo and large GIFs get slow or dropped.
-- Recommended: ~1200×300 px, transparent or `#0D1117` background so it blends with dark mode.
-- The `<img src="assets/hero.gif">` relative path works because the README lives in the same repo. If you'd rather host it elsewhere, swap in the full `https://raw.githubusercontent.com/Vineeth-Sagar/Vineeth-Sagar/main/assets/hero.gif` URL.
+The banner is `assets/portrait.svg` — a dot-matrix rendering generated from a photo
+by `scripts/dotify.py`. It has a transparent background, so one file serves both
+GitHub themes.
 
-Making one: export a short loop from Figma/After Effects, or run a photo through a halftone/dither filter (`ImageMagick -ordered-dither`, or ezgif.com's effects) and loop it.
+To regenerate from a different photo:
+
+```bash
+python scripts/dotify.py assets/source.jpg -o assets/portrait --cols 92 --detail 0.30 --min-r 2.2 --equalize --color --crop 240,120,790,665
+```
+
+- `--crop L,T,R,B` — pixel box around the head and shoulders. Adjust per photo.
+- `--min-r` — smallest dot drawn. Raise it to erase a pale background, lower it
+  to keep the full-frame LED texture.
+- `--cols` — grid resolution. Higher is finer but the SVG grows fast.
+- Drop `--color` for a monochrome neon portrait (`--mono-color '#52FF78'`).
+
+`assets/source.jpg` is **gitignored** — the raw photo stays on your machine and only
+the derived SVG is published. Keep a copy locally if you want to re-run the script.
 
 ## 4. Enable Actions write permissions (required for the snake)
 
@@ -63,29 +76,40 @@ The README's `<picture>` block reads those raw URLs and auto-switches with the v
 
 > If the images 404 for a few minutes, that's the `raw.githubusercontent.com` CDN cache — it clears on its own.
 
-## 6. Swap checklist
+## 6. Links wired in
 
-| Placeholder | Replace with | Status |
-|---|---|---|
-| `Vineeth-Sagar` | your GitHub username | ✅ done |
-| LinkedIn | `linkedin.com/in/vineeth-sagar-h-l` | ✅ done |
-| Portfolio | `https://vineethsgar.co.in` | ✅ done (domain not resolving yet) |
-| Pinned repos | `prompt-security-framework`, `RAG-Ai-bot` | ✅ done |
-| `YOUR_EMAIL` | public email | ⬜ 3 places |
-| `YOUR_LEETCODE` | LeetCode handle, or delete the badge | ⬜ 1 |
-| `YOUR_CODEFORCES` | Codeforces handle, or delete the badge | ⬜ 1 |
-| `YOUR_DISCORD_ID` | Discord numeric user ID, or delete | ⬜ 1 |
-| `YOUR_DOCKERHUB` | Docker Hub username, or delete | ⬜ 1 |
+Everything is filled in — no placeholders remain in `README.md`.
 
-Fill the email in one shot:
+| Item | Value |
+|---|---|
+| GitHub | `Vineeth-Sagar` |
+| Email | `vineethsagarhl0@gmail.com` |
+| LinkedIn | `linkedin.com/in/vineeth-sagar-h-l` |
+| Portfolio | `www.vineethsagar.co.in` |
+| LeetCode | `leetcode.com/vineethQuinz` |
+| Discord | user ID `1489321223497191425` |
 
-```bash
-sed -i 's/YOUR_EMAIL/you@example.com/g' README.md
-```
+Codeforces and Docker Hub badges were removed — add them back if you create accounts.
 
 ## 7. Notes on the third-party widgets
 
-- **`github-readme-stats`** is on a shared Vercel instance and rate-limits during peak hours (card shows "Maximum retries exceeded"). Fix: fork [anuraghazra/github-readme-stats](https://github.com/anuraghazra/github-readme-stats), deploy to your own Vercel, and point the URLs at `https://<your-app>.vercel.app/api?...`.
-- **Private commits** only count if you also enable *Settings → Profile → Include private contributions on my profile*.
-- **`streak-stats.demolab.com`** and **`github-readme-activity-graph.vercel.app`** are likewise community-hosted; both can be self-deployed the same way.
-- Skill icons: full icon list at [skillicons.dev](https://skillicons.dev) — add/remove slugs in the `i=` parameter.
+All image hosts used in the README were checked and return HTTP 200. Three popular
+ones are **currently down for everyone** and are deliberately NOT used:
+
+| Host | Status | Used instead |
+|---|---|---|
+| `github-readme-stats.vercel.app` | 503 | `github-profile-summary-cards.vercel.app` |
+| `github-readme-activity-graph.vercel.app` | 402 (Vercel over quota) | `ghchart.rshah.org` |
+| `github-profile-trophy.vercel.app` | 402 | `github-trophies.vercel.app` (mirror) |
+| `visitcount.itsvg.in` | 404 | `komarev.com` |
+
+These are free community deployments, so any of them can go down again. The durable
+fix for the stats cards is to self-host: fork
+[anuraghazra/github-readme-stats](https://github.com/anuraghazra/github-readme-stats),
+deploy it to your own Vercel account, and point the URLs at
+`https://<your-app>.vercel.app/api?...`.
+
+- **Private commits** only count if you also enable
+  *Settings → Profile → Include private contributions on my profile*.
+- Skill icons: full slug list at [skillicons.dev](https://skillicons.dev) — edit the
+  `i=` parameter to add or remove icons.

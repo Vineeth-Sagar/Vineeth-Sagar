@@ -2,30 +2,19 @@
 ═══════════════════════════════════════════════════════════════════════════════
   GITHUB PROFILE README  ·  Vineeth-Sagar/Vineeth-Sagar
   ───────────────────────────────────────────────────────────────────────────
-  ✅ ALREADY FILLED IN: username (Vineeth-Sagar), LinkedIn, portfolio,
-     pinned repos (prompt-security-framework, RAG-Ai-bot).
-
-  🔁 STILL TO SWAP (search this file for "🔁 SWAP"):
-     1. YOUR_EMAIL          → your public email            (3 places)
-     2. YOUR_LEETCODE       → LeetCode handle  — or delete that badge line
-     3. YOUR_CODEFORCES     → Codeforces handle — or delete that badge line
-     4. YOUR_DISCORD_ID     → Discord numeric user ID — or delete
-     5. YOUR_DOCKERHUB      → Docker Hub username — or delete
-     6. assets/hero.gif     → drop your own banner GIF there
   Palette: bg #0D1117 · neon green #52FF78 · violet #A78BFA
+
+  Hero portrait is generated from a photo by scripts/dotify.py. Regenerate with:
+    python scripts/dotify.py assets/source.jpg -o assets/portrait \
+      --cols 92 --detail 0.30 --min-r 2.2 --equalize --color \
+      --crop 240,120,790,665
 ═══════════════════════════════════════════════════════════════════════════════
 -->
 
 <div align="center">
 
-<!-- ─────────────── 1 · HERO BANNER ─────────────── -->
-<!-- TEMPORARY animated banner, so the profile looks complete before you make a GIF. -->
-<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:0D1117,50:52FF78,100:A78BFA&height=200&section=header&text=Vineeth%20Sagar%20H%20L&fontSize=48&fontColor=FFFFFF&fontAlignY=35&desc=ML%20Engineer%20%C2%B7%20LLM%20Systems%20%C2%B7%20Cloud%20Native&descSize=16&descAlignY=55&animation=fadeIn" alt="Vineeth Sagar H L — banner" />
-
-<!-- 🔁 SWAP: when your pixel-art / halftone GIF is ready, drop it at assets/hero.gif,
-     then DELETE the capsule-render line above and UNCOMMENT the line below.
-<img src="assets/hero.gif" width="820" alt="Vineeth Sagar H L — animated banner" />
--->
+<!-- ─────────────── 1 · HERO PORTRAIT (dot matrix, theme-agnostic) ─────────────── -->
+<img src="assets/portrait.svg" width="280" alt="Vineeth Sagar H L, rendered as a dot matrix" />
 
 <br/>
 
@@ -38,12 +27,12 @@
 
 <br/>
 
-<!-- ─────────────── 3 · PRIMARY ACTION BADGES (flat, one row) ─────────────── -->
-<a href="https://linkedin.com/in/vineeth-sagar-h-l"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=flat&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>&nbsp;
-<a href="mailto:YOUR_EMAIL"><img src="https://img.shields.io/badge/Email-EA4335?style=flat&logo=gmail&logoColor=white" alt="Email" /></a>&nbsp;
-<a href="https://vineethsgar.co.in"><img src="https://img.shields.io/badge/Portfolio-0D1117?style=flat&logo=vercel&logoColor=52FF78" alt="Portfolio" /></a>&nbsp;
-<a href="https://leetcode.com/u/YOUR_LEETCODE"><img src="https://img.shields.io/badge/LeetCode-FFA116?style=flat&logo=leetcode&logoColor=black" alt="LeetCode" /></a>&nbsp;
-<a href="https://codeforces.com/profile/YOUR_CODEFORCES"><img src="https://img.shields.io/badge/Codeforces-1F8ACB?style=flat&logo=codeforces&logoColor=white" alt="Codeforces" /></a>
+<!-- ─────────────── 3 · PRIMARY ACTION BADGES ─────────────── -->
+<a href="https://www.linkedin.com/in/vineeth-sagar-h-l/"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=flat&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>&nbsp;
+<a href="mailto:vineethsagarhl0@gmail.com"><img src="https://img.shields.io/badge/Email-EA4335?style=flat&logo=gmail&logoColor=white" alt="Email" /></a>&nbsp;
+<a href="https://www.vineethsagar.co.in/"><img src="https://img.shields.io/badge/Portfolio-0D1117?style=flat&logo=vercel&logoColor=52FF78" alt="Portfolio" /></a>&nbsp;
+<a href="https://leetcode.com/vineethQuinz/"><img src="https://img.shields.io/badge/LeetCode-FFA116?style=flat&logo=leetcode&logoColor=black" alt="LeetCode" /></a>&nbsp;
+<a href="https://discord.com/users/1489321223497191425"><img src="https://img.shields.io/badge/Discord-5865F2?style=flat&logo=discord&logoColor=white" alt="Discord" /></a>
 
 <br/><br/>
 
@@ -75,7 +64,7 @@ class VineethSagar:
 - 🧠 &nbsp;Shipping **end-to-end RAG pipelines** over private knowledge bases
 - ☁️ &nbsp;Deep into **containers, orchestration and cloud-native tooling**
 - 🤝 &nbsp;Open to collaborating on **AI / Cloud projects and real-world OSS**
-- 📫 &nbsp;Reach me at **YOUR_EMAIL** <!-- 🔁 SWAP -->
+- 📫 &nbsp;Reach me at **[vineethsagarhl0@gmail.com](mailto:vineethsagarhl0@gmail.com)**
 
 <img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png" width="100%" height="3" alt="" />
 
@@ -109,11 +98,28 @@ class VineethSagar:
 
 ## <img src="https://media.giphy.com/media/dWesBcTLavkZuG35MI/giphy.gif" width="26" /> &nbsp;GitHub Metrics
 
+<!--
+  NOTE ON HOSTS: github-readme-stats.vercel.app (503) and
+  github-readme-activity-graph.vercel.app (402) are community Vercel deployments
+  that are currently over quota / down for everyone. The cards below use hosts
+  that are actually up. To go back to github-readme-stats, self-host it:
+  fork anuraghazra/github-readme-stats → deploy to your own Vercel → swap the host.
+-->
+
 <div align="center">
 
-<!-- ─── STATS CARD + TOP LANGUAGES ─── -->
-<img height="170" src="https://github-readme-stats.vercel.app/api?username=Vineeth-Sagar&show_icons=true&hide_border=true&theme=radical&bg_color=0D1117&title_color=52FF78&icon_color=A78BFA&text_color=C9D1D9&include_all_commits=true&count_private=true&rank_icon=github" alt="GitHub stats" />
-<img height="170" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Vineeth-Sagar&layout=compact&langs_count=8&hide_border=true&theme=radical&bg_color=0D1117&title_color=52FF78&text_color=C9D1D9" alt="Top languages" />
+<!-- ─── PROFILE SUMMARY (github-profile-summary-cards) ─── -->
+<img width="98%" src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=Vineeth-Sagar&theme=github_dark" alt="Profile summary" />
+
+<br/>
+
+<img width="41%" src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=Vineeth-Sagar&theme=github_dark" alt="Repos per language" />
+<img width="41%" src="https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=Vineeth-Sagar&theme=github_dark" alt="Most commit language" />
+
+<br/>
+
+<img width="41%" src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=Vineeth-Sagar&theme=github_dark" alt="Stats" />
+<img width="41%" src="https://github-profile-summary-cards.vercel.app/api/cards/productive-time?username=Vineeth-Sagar&theme=github_dark&utcOffset=5.5" alt="Productive time" />
 
 <br/><br/>
 
@@ -122,13 +128,13 @@ class VineethSagar:
 
 <br/><br/>
 
-<!-- ─── 12-MONTH CONTRIBUTION WAVE GRAPH ─── -->
-<img width="96%" src="https://github-readme-activity-graph.vercel.app/graph?username=Vineeth-Sagar&bg_color=0D1117&color=52FF78&line=A78BFA&point=FFFFFF&area=true&area_color=52FF78&hide_border=true&days=365" alt="Contribution activity graph" />
+<!-- ─── CONTRIBUTION HEATMAP ─── -->
+<img width="90%" src="https://ghchart.rshah.org/52FF78/Vineeth-Sagar" alt="Contribution heatmap" />
 
 <br/><br/>
 
 <!-- ─── TROPHIES (frameless, transparent) ─── -->
-<img width="96%" src="https://github-profile-trophy.vercel.app/?username=Vineeth-Sagar&theme=radical&no-frame=true&no-bg=true&margin-w=8&margin-h=8&column=7&rank=SSS,SS,S,AAA,AA,A,B" alt="GitHub trophies" />
+<img width="96%" src="https://github-trophies.vercel.app/?username=Vineeth-Sagar&theme=radical&no-frame=true&no-bg=true&margin-w=8&margin-h=8&column=7&rank=SSS,SS,S,AAA,AA,A,B" alt="GitHub trophies" />
 
 </div>
 
@@ -138,8 +144,7 @@ class VineethSagar:
 
 <div align="center">
 
-<!-- Auto-generated daily by .github/workflows/snake.yml and pushed to the `output` branch.
-     Nothing to edit here — the URLs already point at Vineeth-Sagar/output. -->
+<!-- Auto-generated daily by .github/workflows/snake.yml, pushed to the `output` branch. -->
 <picture>
   <source media="(prefers-color-scheme: dark)"
           srcset="https://raw.githubusercontent.com/Vineeth-Sagar/Vineeth-Sagar/output/github-contribution-grid-snake-dark.svg" />
@@ -155,17 +160,15 @@ class VineethSagar:
 
 ## <img src="https://media.giphy.com/media/LnQjpWaON8nhr21vNW/giphy.gif" width="26" /> &nbsp;Pinned Work
 
-<div align="center">
+<!-- Plain links instead of pin cards, because the pin-card host is the same
+     github-readme-stats deployment that is currently returning 503. -->
 
-<!-- Pinned repo cards — swap the repo= values to feature different projects -->
-<a href="https://github.com/Vineeth-Sagar/prompt-security-framework">
-  <img width="49%" src="https://github-readme-stats.vercel.app/api/pin/?username=Vineeth-Sagar&repo=prompt-security-framework&theme=radical&hide_border=true&bg_color=0D1117&title_color=52FF78&icon_color=A78BFA&text_color=C9D1D9" alt="prompt-security-framework" />
-</a>
-<a href="https://github.com/Vineeth-Sagar/RAG-Ai-bot">
-  <img width="49%" src="https://github-readme-stats.vercel.app/api/pin/?username=Vineeth-Sagar&repo=RAG-Ai-bot&theme=radical&hide_border=true&bg_color=0D1117&title_color=52FF78&icon_color=A78BFA&text_color=C9D1D9" alt="RAG-Ai-bot" />
-</a>
-
-</div>
+| Project | What it is | Stack |
+|---|---|---|
+| **[prompt-security-framework](https://github.com/Vineeth-Sagar/prompt-security-framework)** | Adaptive context-aware, multi-layer prompt security & output governance framework for secure LLM deployment | ![Python](https://img.shields.io/badge/-Python-3776AB?style=flat&logo=python&logoColor=white) |
+| **[RAG-Ai-bot](https://github.com/Vineeth-Sagar/RAG-Ai-bot)** | End-to-end RAG pipeline on a modern, scalable stack — builds a private knowledge base from your own documents | ![Python](https://img.shields.io/badge/-Python-3776AB?style=flat&logo=python&logoColor=white) |
+| **[floatchat_prototype](https://github.com/Vineeth-Sagar/floatchat_prototype)** | Conversational interface prototype | ![Python](https://img.shields.io/badge/-Python-3776AB?style=flat&logo=python&logoColor=white) |
+| **[ML-lab](https://github.com/Vineeth-Sagar/ML-lab)** | Machine-learning experiments and lab work | ![Python](https://img.shields.io/badge/-Python-3776AB?style=flat&logo=python&logoColor=white) |
 
 <img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png" width="100%" height="3" alt="" />
 
@@ -179,16 +182,15 @@ If something here resonates with you, reach out — I'd love to build together.
 
 <br/>
 
-<!-- 🔁 SWAP every href below -->
-<a href="https://linkedin.com/in/vineeth-sagar-h-l"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
-<a href="https://vineethsgar.co.in"><img src="https://img.shields.io/badge/Portfolio-20232A?style=for-the-badge&logo=vercel&logoColor=white" alt="Portfolio" /></a>
-<a href="https://discord.com/users/YOUR_DISCORD_ID"><img src="https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord" /></a>
-<a href="mailto:YOUR_EMAIL"><img src="https://img.shields.io/badge/Gmail-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Gmail" /></a>
-<a href="https://hub.docker.com/u/YOUR_DOCKERHUB"><img src="https://img.shields.io/badge/DockerHub-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="DockerHub" /></a>
+<a href="https://www.linkedin.com/in/vineeth-sagar-h-l/"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
+<a href="https://www.vineethsagar.co.in/"><img src="https://img.shields.io/badge/Portfolio-20232A?style=for-the-badge&logo=vercel&logoColor=white" alt="Portfolio" /></a>
+<a href="https://discord.com/users/1489321223497191425"><img src="https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord" /></a>
+<a href="mailto:vineethsagarhl0@gmail.com"><img src="https://img.shields.io/badge/Gmail-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Gmail" /></a>
+<a href="https://leetcode.com/vineethQuinz/"><img src="https://img.shields.io/badge/LeetCode-FFA116?style=for-the-badge&logo=leetcode&logoColor=black" alt="LeetCode" /></a>
 
 <br/><br/>
 
-<img src="https://visitcount.itsvg.in/api?id=Vineeth-Sagar&icon=5&color=6" alt="visitor counter" />
+<img src="https://komarev.com/ghpvc/?username=Vineeth-Sagar&style=for-the-badge&color=a78bfa&label=VISITORS" alt="visitor count" />
 
 <br/><br/>
 
